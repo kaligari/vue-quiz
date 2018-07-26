@@ -17,7 +17,74 @@
                                 <h1 class="title has-text-centered">Vue Game - Quiz</h1>
                             </div>
                             <game-quiz
+                                :questions="[
+                                {
+                                    question: 'How old you are?',
+                                    answers: [
+                                    {
+                                        answer: '0-12',
+                                        points: 1
+                                    },
+                                    {
+                                        answer: '13-18',
+                                        points: 2
+                                    },
+                                    {
+                                        answer: '18-30',
+                                        points: 3
+                                    },
+                                    {
+                                        answer: 'more than 30',
+                                        points: 4
+                                    },
+                                    ]
+                                },
+                                {
+                                    question: 'What is your sex?',
+                                    answers: [
+                                    {
+                                        answer: 'female',
+                                        points: 1
+                                    },
+                                    {
+                                        answer: 'male',
+                                        points: 1
+                                    }
+                                    ]
+                                },
+                                {
+                                    question: 'What is your hobby?',
+                                    answers: [
+                                    {
+                                        answer: 'Reading books',
+                                        points: 1
+                                    },
+                                    {
+                                        answer: 'Watching movies',
+                                        points: 2
+                                    },
+                                    {
+                                        answer: 'Collecting stamps',
+                                        points: 3
+                                    }
 
+                                    ]
+                                }
+                                ]"
+                                :results="[
+                                {
+                                    points: 3,
+                                    message: 'You are a Reptalianin'
+                                },
+                                {
+                                    points: 5,
+                                    message: 'You are a Human'
+                                },
+                                {
+                                    points: 7,
+                                    message: 'You are a Martian'
+                                }
+                                ]"
                             ></game-quiz>
                         </div>
                     </div>
