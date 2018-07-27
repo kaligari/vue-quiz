@@ -15,9 +15,9 @@
             </div>
         </div>
         <div class="result" v-if="isFinished">
-            <h2>Quiz result</h2>
+            <h2>Quiz result:</h2>
             <p>You collect {{ points }} points.</p>
-            <p v-for="result,key in results" v-if="showResult(key,result.points)">{{ result.message }}</p>
+            <p v-for="result,key in results" v-if="showResult(key)">{{ result.message }}</p>
             <button class="button" @click="restartQuiz">Restart</button>
         </div>
         <div class="quiz-navigation" v-if="!isFinished">
@@ -34,7 +34,7 @@ export default {
         return{
             currentQuestion: 0,
             points: 0,
-            answers: Array(this.total).fill(null),
+            answers: Array(this.questions.length).fill(null),
             isFinished: false,
         }
     },
@@ -80,9 +80,10 @@ export default {
             this.answers[key] = points;
             this.points = this.answers.reduce((a, b) => {return a+b;});
         },
-        showResult(key, points){
+        showResult(key){
             let min = key == 0 ? 0 : this.results[key-1].points;
-            return (this.points > min && this.points <= points);
+            let max = this.results[key].points;
+            return (this.points > min && this.points <= max);
         },
         restartQuiz(){
             this.isFinished = false;
