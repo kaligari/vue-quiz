@@ -4,7 +4,7 @@
             Your points: {{ points }}
         </div>
         <div class="question" v-for="question,key in questions" v-if="key == currentQuestion && !isFinished">
-            <h2 class="question-title">Question {{ key+1 }} - {{ question.question }}</h2>
+            <h2 class="question-title">Question {{ key+1 }} of {{ total }} - {{ question.question }}</h2>
             <div class="field" v-for="answer,answerKey in question.answers">
                 <div class="control">
                     <label class="radio">
@@ -34,7 +34,7 @@ export default {
         return{
             currentQuestion: 0,
             points: 0,
-            answers: Array(this.questions.length).fill(null),
+            answers: Array(this.total).fill(null),
             isFinished: false,
         }
     },
@@ -49,8 +49,11 @@ export default {
         },
     },
     computed: {
+        total(){
+          return this.questions.length;
+        },
         isBeforeTotal(){
-            return this.currentQuestion < this.questions.length-1;
+            return this.currentQuestion < this.total-1;
         },
         isAfterStart(){
             return this.currentQuestion > 0;
@@ -59,7 +62,7 @@ export default {
             return this.currentQuestion == 0;
         },
         isLast(){
-            return this.currentQuestion == this.questions.length-1;
+            return this.currentQuestion == this.total-1;
         },
     },
     methods:{
